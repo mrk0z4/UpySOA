@@ -2,9 +2,11 @@ import select
 import sys
 import pybonjour
 
-name	= "new"
-regtype = "_new._tcp"
-port	= int("1357")
+
+name = "cristal"
+regtype = "_%s._tcp" % (name)
+port = int("8310")
+
 
 def register_callback(sdRef, flags, errorCode, name, regtype, domain):
 	if errorCode == pybonjour.kDNSServiceErr_NoError:
@@ -14,7 +16,10 @@ def register_callback(sdRef, flags, errorCode, name, regtype, domain):
 		print '  domain  =', domain
 
 
-sdRef = pybonjour.DNSServiceRegister(name = name, regtype = regtype, port = port, callBack = register_callback)
+sdRef = pybonjour.DNSServiceRegister(name = name,
+									 regtype = regtype,
+									 port = port,
+									 callBack = register_callback)
 
 try:
 	try:
